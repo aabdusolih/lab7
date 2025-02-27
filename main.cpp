@@ -14,6 +14,7 @@ void area(double r);
 void circumference(double r);
 void volume(double r);
 void movie();
+void password(string pass);
 
 int main(){
     /* problem 1
@@ -28,7 +29,12 @@ int main(){
     circumference(r);
     volume(r); */
     // problem 4   movie();
-
+    // skipped 5 because it is the same as 4 :)
+    /* problem 6
+    string passs;
+    cout << "Enter your password: ";
+    cin >> passs;
+    password(passs);*/
     return 0;
 }
 
@@ -188,4 +194,39 @@ void movie() {
     }while (choice != 4);
     cost = a * 8 + b * 10 + c * 12;
     cout << "Your cost is: $" << cost << endl;
+}
+void password(string pass) {
+    bool islong = false, islower = false, isupper = false, isdigit = false, isspecial = false;
+    for (char& c : pass){
+        if (c >= 'A' && c <= 'Z') {
+            isupper = true;
+        }
+        if (c >= 'a' && c <= 'z') {
+            islower = true;
+        }
+        if (c >= '0' && c <= '9') {
+            isdigit = true;
+        }
+        if (c == '!' || c == '?' || c == '@' || c == '#' || c == '$' || c == '%' || c == '&' || c == '*' || c == '^' || c == '.') {
+            isspecial = true;
+        }
+    }
+    if (pass.length() >= 8)
+        islong = true;
+    if (islong && islower && isupper && isdigit && isspecial) {
+        cout << "Strong password" << endl;
+    }
+    else {
+        cout << "Weak password" << endl;
+        if (!islong)
+            cout << "Password should be at least 8 characters long." << endl;
+        if (!islower)
+            cout << "Password should have at least 1 lowercase character." << endl;
+        if (!isupper)
+            cout << "Password should have at least 1 uppercase character." << endl;
+        if (!isdigit)
+            cout << "Password should have at least 1 digit." << endl;
+        if (!isspecial)
+            cout << "Password should have at least 1 special character." << endl;
+    }
 }
